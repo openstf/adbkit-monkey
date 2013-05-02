@@ -1,25 +1,34 @@
 class Reply
+  @ERROR = 'ERROR'
+  @OK = 'OK'
 
-  @parse: (data) ->
-    unless data.length
+  @parse: (chunk) ->
+    unless Buffer.isBuffer chunk
+      throw new Error "Only Buffers can be processed"
+    length = chunk.length
+    unless length
       return null
-    if Buffer.isBuffer data
-      data = data.toString()
-    split = data.indexOf ':'
+    split = -1
+    # Detect the ':' value separator
+    switch 0x3a
+      when chunk[2] then split = 2
+      when chunk[5] then split = 5
+    end = split
+    # Figure out where the line ends (i.e. '\n')
+    while end < length and chunk[end] isnt 0x0a
+      end += 1
+    value = chunk.toString 'ascii', split + 1, end
     if split is -1
-      switch data
-        when 'OK'
-          return new Reply 'OK', null
-        when 'ERROR'
-          throw new SyntaxError "ERROR must come with value"
-        else
-          throw new SyntaxError "Out-of-spec valueless reply: '#{data}'"
-    type = data.substr 0, split
-    value = data.substr split + 1
+      type = value
+      if type is Reply.ERROR
+        throw new SyntaxError "ERROR must have a value"
+      value = null
+    else
+      type = chunk.toString 'ascii', 0, split
     switch type
-      when 'OK', 'ERROR'
-        return new Reply type, value
-    throw new SyntaxError "Out-of-spec reply with value: '#{data}'"
+      when Reply.OK, Reply.ERROR
+        return [new Reply(type, value), chunk.slice(end + 1)]
+    throw new SyntaxError "Unknown response '#{chunk.toString 'ascii', 0, end}'"
 
   constructor: (@type, @value) ->
 
