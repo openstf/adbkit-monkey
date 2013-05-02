@@ -46,6 +46,7 @@ module.exports = (grunt) ->
           '--compilers coffee:coffee-script'
           '--reporter spec'
           '--colors'
+          '--recursive'
         ],
         cmd: './node_modules/.bin/mocha <%= exec.mocha.options.join(" ") %>'
 
