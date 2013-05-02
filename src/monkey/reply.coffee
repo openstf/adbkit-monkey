@@ -23,4 +23,10 @@ class Reply
 
   constructor: (@type, @value) ->
 
+  isError: ->
+    @type is 'ERROR'
+
+  toError: ->
+    new Error @value
+
 module.exports = Reply

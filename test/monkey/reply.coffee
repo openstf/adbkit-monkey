@@ -8,6 +8,7 @@ describe 'Reply', ->
     reply = Reply.parse 'OK'
     expect(reply.type).to.equal 'OK'
     expect(reply.value).to.be.null
+    expect(reply.isError()).to.equal false
     done()
 
   it "should parse a successful reply with value", (done) ->
@@ -38,6 +39,9 @@ describe 'Reply', ->
     reply = Reply.parse 'ERROR:unknown var'
     expect(reply.type).to.equal 'ERROR'
     expect(reply.value).to.equal 'unknown var'
+    expect(reply.isError()).to.equal true
+    expect(reply.toError()).to.be.an.instanceof Error
+    expect(reply.toError().message).to.equal 'unknown var'
     done()
 
   it "should throw a SyntaxError on valueless error reply", (done) ->
