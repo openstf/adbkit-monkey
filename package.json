@@ -4,7 +4,7 @@
   "private": true,
   "version": "0.1.0",
   "author": "CyberAgent, Inc.",
-  "main": "./lib/monkey",
+  "main": "./index",
   "scripts": {
     "test": "grunt test"
   },

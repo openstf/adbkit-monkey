@@ -9,9 +9,14 @@ module.exports = (grunt) ->
         src: '**/*.coffee'
         dest: 'lib'
         ext: '.js'
+      index:
+        src: 'index.coffee'
+        dest: 'index.js'
     coffeelint:
       src:
         src: '<%= coffee.src.cwd %>/<%= coffee.src.src %>'
+      index:
+        src: '<%= coffee.index.src %>'
       test:
         src: 'test/**/*.coffee'
       gruntfile:
@@ -23,6 +28,9 @@ module.exports = (grunt) ->
       src:
         files: '<%= coffee.src.cwd %>/<%= coffee.src.src %>'
         tasks: ['coffeelint:src', 'test']
+      index:
+        files: '<%= coffee.index.src %>'
+        tasks: ['coffeelint:index', 'test']
       test:
         files: '<%= coffeelint.test.src %>',
         tasks: ['coffeelint:test', 'test']
