@@ -37,7 +37,7 @@ describe 'Stream', ->
         @monkey.end()
       @monkey.send 'foo', ->
 
-  describe "end", ->
+  describe "end()", ->
 
     it "should be chainable", (done) ->
       expect(@monkey.end()).to.equal @monkey
@@ -48,7 +48,7 @@ describe 'Stream', ->
         done()
       @monkey.end()
 
-  describe "send", ->
+  describe "send(command, callback)", ->
 
     it "should be chainable", (done) ->
       expect(@monkey.send 'foo', ->).to.equal @monkey
@@ -85,7 +85,7 @@ describe 'Stream', ->
           expect(callback).to.have.been.calledWith null, '7', 'give7'
           done()
 
-  describe "multi", ->
+  describe "multi()", ->
 
     it "should return a Multi instance", (done) ->
       expect(@monkey.multi()).to.be.an.instanceOf Multi
