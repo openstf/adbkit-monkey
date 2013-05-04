@@ -18,6 +18,10 @@ describe 'Stream', ->
     expect(@monkey).to.be.an.instanceOf Api
     done()
 
+  it "should set 'stream' property", (done) ->
+    expect(@monkey.stream).to.be.equal @duplex
+    done()
+
   describe "events", ->
 
     it "should emit 'finish' when underlying stream does", (done) ->
