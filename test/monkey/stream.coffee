@@ -6,7 +6,7 @@ Chai.use require 'sinon-chai'
 Stream = require '../../src/monkey/stream'
 Api = require '../../src/monkey/api'
 Multi = require '../../src/monkey/multi'
-MockDuplex = require '../mock/duplex.coffee'
+MockDuplex = require '../mock/duplex'
 
 describe 'Stream', ->
 
