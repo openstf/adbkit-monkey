@@ -1,6 +1,9 @@
 {EventEmitter} = require 'events'
 
 class Api extends EventEmitter
+  send: ->
+    throw new Error "send is not implemented"
+
   keyDown: (keyCode, callback) ->
     this.send "key down #{keyCode}", callback
     return this
@@ -46,7 +49,12 @@ class Api extends EventEmitter
     return this
 
   type: (str, callback) ->
-    this.send "type #{str}", callback
+    # Escape double quotes.
+    str = str.replace /"/g, '\\"'
+    if str.indexOf(' ') is -1
+      this.send "type #{str}", callback
+    else
+      this.send "type \"#{str}\"", callback
     return this
 
   list: (callback) ->
