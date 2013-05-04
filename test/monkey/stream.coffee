@@ -4,10 +4,17 @@ Chai.use require 'sinon-chai'
 {expect} = Chai
 
 Stream = require '../../src/monkey/stream'
+Api = require '../../src/monkey/api'
 Multi = require '../../src/monkey/multi'
 MockDuplex = require '../mock/duplex.coffee'
 
 describe 'Stream', ->
+
+  it "should implement Api", (done) ->
+    duplex = new MockDuplex
+    monkey = new Stream duplex
+    expect(monkey).to.be.an.instanceOf Api
+    done()
 
   describe "events", ->
 
@@ -30,6 +37,12 @@ describe 'Stream', ->
 
   describe "end", ->
 
+    it "should be chainable", (done) ->
+      duplex = new MockDuplex
+      monkey = new Stream duplex
+      expect(monkey.end()).to.equal monkey
+      done()
+
     it "should end underlying stream", (done) ->
       duplex = new MockDuplex
       monkey = new Stream duplex
@@ -38,6 +51,12 @@ describe 'Stream', ->
       monkey.end()
 
   describe "send", ->
+
+    it "should be chainable", (done) ->
+      duplex = new MockDuplex
+      monkey = new Stream duplex
+      expect(monkey.send 'foo', ->).to.equal monkey
+      done()
 
     describe "with single command", ->
 

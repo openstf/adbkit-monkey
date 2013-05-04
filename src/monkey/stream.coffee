@@ -1,11 +1,10 @@
-{EventEmitter} = require 'events'
-
+Api = require './api'
 Command = require './command'
 Reply = require './reply'
 Queue = require './queue'
 Multi = require './multi'
 
-class Stream extends EventEmitter
+class Stream extends Api
   constructor: (@stream) ->
     @commandQueue = new Queue
     this._hook()
@@ -35,7 +34,7 @@ class Stream extends EventEmitter
 
   end: ->
     @stream.end()
-    return
+    return this
 
   send: (commands, callback) ->
     if Array.isArray commands
@@ -45,7 +44,7 @@ class Stream extends EventEmitter
     else
       @commandQueue.enqueue new Command commands, callback
       @stream.write "#{commands}\n"
-    return
+    return this
 
   multi: ->
     new Multi @stream, @commandQueue
