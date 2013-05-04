@@ -22,7 +22,9 @@
     "grunt-jsonlint": "1.0.0",
     "grunt-exec": "0.4.0",
     "mocha": "1.9.0",
-    "chai": "1.5.0"
+    "chai": "1.5.0",
+    "sinon": "1.6.0",
+    "sinon-chai": "2.4.0"
   },
   "license": "restricted",
   "engines": {
