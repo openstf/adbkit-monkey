@@ -1,5 +1,5 @@
 Sinon = require 'sinon'
-Chai = require 'Chai'
+Chai = require 'chai'
 Chai.use require 'sinon-chai'
 {expect} = Chai
 
