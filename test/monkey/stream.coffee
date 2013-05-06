@@ -91,12 +91,7 @@ describe 'Stream', ->
       expect(@monkey.multi()).to.be.an.instanceOf Multi
       done()
 
-    it "should be connected to the same stream", (done) ->
+    it "should be be bound to the Stream instance", (done) ->
       multi = @monkey.multi()
-      expect(multi.stream).to.equal @monkey.stream
-      done()
-
-    it "should use the same command queue", (done) ->
-      multi = @monkey.multi()
-      expect(multi.commandQueue).to.equal @monkey.commandQueue
+      expect(multi.monkey).to.equal @monkey
       done()

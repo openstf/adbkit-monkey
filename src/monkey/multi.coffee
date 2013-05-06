@@ -1,7 +1,8 @@
 Api = require './api'
+Command = require './command'
 
 class Multi extends Api
-  constructor: (@stream, @commandQueue) ->
+  constructor: (@monkey) ->
     @commands = []
     @replies = []
     @errors = []
@@ -11,9 +12,10 @@ class Multi extends Api
     @collector = (err, result, cmd) =>
       @errors.push "#{cmd}: #{err.message}" if err
       @replies.push result
-      this.maybeFinish()
+      @counter -= 1
+      this._maybeFinish()
 
-  maybeFinish: ->
+  _maybeFinish: ->
     if @counter is 0
       if @errors.length
         setImmediate =>
@@ -23,13 +25,17 @@ class Multi extends Api
           @callback null, @replies
     return
 
+  _forbidReuse: ->
+    if @sent
+      throw new Error "Reuse not supported"
+
   send: (command) ->
-    @commands = new Command command, @collector
+    this._forbidReuse()
+    @commands.push new Command command, @collector
     return
 
   execute: (callback) ->
-    if @sent
-      throw new Error "Reuse not supported"
+    this._forbidReuse()
     @counter = @commands.length
     @sent = true
     @callback = callback
@@ -37,11 +43,11 @@ class Multi extends Api
       return
     parts = []
     for command in @commands
-      @commandQueue.enqueue command
+      @monkey.commandQueue.enqueue command
       parts.push command.command
     parts.push ''
     @commands = []
-    @stream.write parts.join '\n'
+    @monkey.stream.write parts.join '\n'
     return
 
 module.exports = Multi

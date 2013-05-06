@@ -51,6 +51,6 @@ class Stream extends Api
     return this
 
   multi: ->
-    new Multi @stream, @commandQueue
+    new Multi this
 
 module.exports = Stream
