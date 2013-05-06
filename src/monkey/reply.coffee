@@ -5,7 +5,7 @@ class Reply
   constructor: (@type, @value) ->
 
   isError: ->
-    @type is 'ERROR'
+    @type is Reply.ERROR
 
   toError: ->
     new Error @value
