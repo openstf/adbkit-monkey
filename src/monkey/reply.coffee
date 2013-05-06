@@ -8,6 +8,8 @@ class Reply
     @type is Reply.ERROR
 
   toError: ->
+    unless this.isError()
+      throw new Error 'toError() cannot be called for non-errors'
     new Error @value
 
 module.exports = Reply
