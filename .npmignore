@@ -1,5 +1,4 @@
 /.editorconfig
 /.npmignore
 /Gruntfile.coffee
-/src/
 /test/
