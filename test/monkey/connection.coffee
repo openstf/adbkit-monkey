@@ -1,7 +1,9 @@
 Net = require 'net'
+Path = require 'path'
 Sinon = require 'sinon'
 Chai = require 'chai'
 Chai.use require 'sinon-chai'
+{spawn} = require 'child_process'
 {expect} = Chai
 
 Connection = require '../../src/monkey/connection'
@@ -19,23 +21,29 @@ describe 'Connection', ->
     done()
 
   it "should extend Stream", (done) ->
-    monkey = new Connection @options
+    monkey = new Connection
     expect(monkey).to.be.an.instanceOf Stream
     done()
 
-  it "should set 'options' property", (done) ->
-    monkey = new Connection @options
-    expect(monkey.options).to.equal @options
-    done()
-
-  it "should set 'stream' property", (done) ->
-    monkey = new Connection @options
-    expect(monkey.stream).to.be.an.instanceOf Net.Socket
-    done()
-
-  it "should create a connection", (done) ->
+  it "should not create a connection immediately", (done) ->
     Sinon.spy Net, 'connect'
-    monkey = new Connection @options
-    expect(Net.connect).to.have.been.calledWith @options
+    monkey = new Connection
+    expect(Net.connect).to.not.have.been.called
     Net.connect.restore()
     done()
+
+  describe "events", ->
+
+    it "should emit 'connect' when underlying stream does", (done) ->
+      monkey = new Connection().connect @options
+      monkey.on 'connect', ->
+        done()
+
+  describe 'connect(options)', ->
+
+    it "should create a connection", (done) ->
+      Sinon.spy Net, 'connect'
+      monkey = new Connection().connect @options
+      expect(Net.connect).to.have.been.calledWith @options
+      Net.connect.restore()
+      done()

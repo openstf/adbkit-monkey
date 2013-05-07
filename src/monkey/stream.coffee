@@ -6,10 +6,10 @@ Multi = require './multi'
 Parser = require './parser'
 
 class Stream extends Api
-  constructor: (@stream) ->
+  constructor: ->
     @commandQueue = new Queue
     @parser = new Parser
-    this._hook()
+    @stream = null
 
   _hook: ->
     @stream.on 'readable', =>
@@ -35,6 +35,10 @@ class Stream extends Api
     else
       throw new Error "Command queue depleted, but replies still coming in"
     return
+
+  connect: (@stream) ->
+    this._hook()
+    return this
 
   end: ->
     @stream.end()

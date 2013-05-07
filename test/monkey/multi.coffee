@@ -12,7 +12,7 @@ describe 'Multi', ->
 
   beforeEach ->
     @duplex = new MockDuplex
-    @monkey = new Stream @duplex
+    @monkey = new Stream().connect @duplex
     @multi = new Multi @monkey
 
   it "should implement Api", (done) ->

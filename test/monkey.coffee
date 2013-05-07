@@ -32,12 +32,6 @@ describe 'Monkey', ->
       expect(monkey).to.be.an.instanceOf Connection
       done()
 
-    it "should pass options to Connection", (done) ->
-      options = port: @port
-      monkey = Monkey.connect options
-      expect(monkey.options).to.equal options
-      done()
-
     after (done) ->
       @server.close()
       done()

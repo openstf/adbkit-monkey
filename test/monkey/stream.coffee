@@ -12,14 +12,10 @@ describe 'Stream', ->
 
   beforeEach ->
     @duplex = new MockDuplex
-    @monkey = new Stream @duplex
+    @monkey = new Stream().connect @duplex
 
   it "should implement Api", (done) ->
     expect(@monkey).to.be.an.instanceOf Api
-    done()
-
-  it "should set 'stream' property", (done) ->
-    expect(@monkey.stream).to.be.equal @duplex
     done()
 
   describe "events", ->
@@ -36,6 +32,12 @@ describe 'Stream', ->
         @duplex.respond 'OK\n'
         @monkey.end()
       @monkey.send 'foo', ->
+
+  describe "connect(stream)", ->
+
+    it "should set 'stream' property", (done) ->
+      expect(@monkey.stream).to.be.equal @duplex
+      done()
 
   describe "end()", ->
 
