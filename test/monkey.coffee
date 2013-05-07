@@ -8,6 +8,18 @@ MockDuplex = require './mock/duplex'
 
 describe 'Monkey', ->
 
+  describe 'Connection', ->
+
+    it "should be exposed", (done) ->
+      expect(Monkey.Connection).to.equal Connection
+      done()
+
+  describe 'Stream', ->
+
+    it "should be exposed", (done) ->
+      expect(Monkey.Stream).to.equal Stream
+      done()
+
   describe 'connect(options)', ->
 
     before (done) ->

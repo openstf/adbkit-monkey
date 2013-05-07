@@ -9,4 +9,7 @@ class Monkey
   @connectStream: (stream) ->
     new Stream stream
 
+Monkey.Connection = Connection
+Monkey.Stream = Stream
+
 module.exports = Monkey
