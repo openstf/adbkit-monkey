@@ -29,7 +29,7 @@ describe 'Stream', ->
       @monkey.on 'end', ->
         done()
       @duplex.on 'write', =>
-        @duplex.respond 'OK\n'
+        @duplex.causeRead 'OK\n'
         @monkey.end()
       @monkey.send 'foo', ->
 
@@ -61,7 +61,7 @@ describe 'Stream', ->
       it "should receive reply", (done) ->
         @duplex.on 'write', (chunk) =>
           expect(chunk.toString()).to.equal 'give5\n'
-          @duplex.respond 'OK:5\n'
+          @duplex.causeRead 'OK:5\n'
           @monkey.end()
         callback = Sinon.spy()
         @monkey.send 'give5', callback
@@ -75,7 +75,7 @@ describe 'Stream', ->
       it "should receive multiple replies", (done) ->
         @duplex.on 'write', (chunk) =>
           expect(chunk.toString()).to.equal 'give5\ngiveError\ngive7\n'
-          @duplex.respond 'OK:5\nERROR:foo\nOK:7\n'
+          @duplex.causeRead 'OK:5\nERROR:foo\nOK:7\n'
           @monkey.end()
         callback = Sinon.spy()
         @monkey.send ['give5', 'giveError', 'give7'], callback

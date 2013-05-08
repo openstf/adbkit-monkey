@@ -77,7 +77,7 @@ describe 'Multi', ->
 
       it "should be called just once with all results", (done) ->
         @duplex.on 'write', =>
-          @duplex.respond 'OK\nOK:bar\n'
+          @duplex.causeRead 'OK\nOK:bar\n'
         @multi.send 'tap 1 2'
         @multi.send 'getvar foo'
         @multi.execute (err, results) ->

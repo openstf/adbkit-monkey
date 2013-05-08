@@ -8,7 +8,7 @@ class MockDuplex extends Stream.Duplex
     callback null
     return
 
-  respond: (chunk) ->
+  causeRead: (chunk) ->
     unless Buffer.isBuffer chunk
       chunk = new Buffer chunk
     this.push chunk
