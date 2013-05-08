@@ -15,6 +15,10 @@ class Parser extends EventEmitter
         @buffer = @buffer.slice @column + 1
         @column = 0
       @column += 1
+    if @buffer.length
+      @emit 'wait'
+    else
+      @emit 'drain'
     return
 
   _parseLine: (line) ->

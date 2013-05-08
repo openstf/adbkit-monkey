@@ -5,6 +5,16 @@ Reply = require '../../src/monkey/reply'
 
 describe 'Parser', ->
 
+  it "should emit 'wait' when waiting for more data", (done) ->
+    parser = new Parser
+    parser.on 'wait', done
+    parser.parse new Buffer 'OK'
+
+  it "should emit 'drain' when all data has been consumed", (done) ->
+    parser = new Parser
+    parser.on 'drain', done
+    parser.parse new Buffer 'OK\n'
+
   it "should parse a successful reply", (done) ->
     parser = new Parser
     parser.on 'reply', (reply) ->
