@@ -12,8 +12,8 @@ class Stream extends Api
     @stream = null
 
   _hook: ->
-    @stream.on 'readable', =>
-      @parser.parse @stream.read()
+    @stream.on 'data', (data) =>
+      @parser.parse data
     @stream.on 'error', (err) =>
       this.emit 'error', err
     @stream.on 'end', =>
