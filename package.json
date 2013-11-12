@@ -1,12 +1,12 @@
 {
   "name": "adbkit-monkey",
-  "preferGlobal": false,
-  "private": true,
   "version": "0.2.7",
   "author": "CyberAgent, Inc.",
   "main": "./index",
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt test",
+    "prepublish": "grunt coffee",
+    "postpublish": "grunt clean"
   },
   "dependencies": {
     "async": "~0.2.9"
@@ -16,6 +16,7 @@
     "grunt": "~0.4.1",
     "grunt-cli": "~0.1.11",
     "grunt-notify": "~0.2.16",
+    "grunt-contrib-clean": "~0.5.0",
     "grunt-contrib-coffee": "~0.7.0",
     "grunt-contrib-watch": "~0.5.3",
     "grunt-coffeelint": "~0.0.7",
