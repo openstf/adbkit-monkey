@@ -2,7 +2,7 @@
   "name": "adbkit-monkey",
   "preferGlobal": false,
   "private": true,
-  "version": "0.2.6",
+  "version": "0.2.7",
   "author": "CyberAgent, Inc.",
   "main": "./index",
   "scripts": {
