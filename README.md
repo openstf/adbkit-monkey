@@ -11,7 +11,7 @@
 
 ## License
 
-Restricted until further notice.
+See [LICENSE](LICENSE).
 
 [nodejs]: <http://nodejs.org/>
 [monkey-site]: <http://developer.android.com/tools/help/monkey.html>
