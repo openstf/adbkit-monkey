@@ -23,7 +23,7 @@ class Client extends Api
     @parser.on 'reply', (reply) =>
       this._consume reply
     @parser.on 'error', (err) =>
-      throw err
+      this.emit 'error', err
     return
 
   _consume: (reply) ->
