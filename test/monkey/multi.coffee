@@ -4,7 +4,7 @@ Chai.use require 'sinon-chai'
 {expect} = Chai
 
 Multi = require '../../src/monkey/multi'
-Stream = require '../../src/monkey/stream'
+Client = require '../../src/monkey/client'
 MockDuplex = require '../mock/duplex'
 Api = require '../../src/monkey/api'
 
@@ -12,7 +12,7 @@ describe 'Multi', ->
 
   beforeEach ->
     @duplex = new MockDuplex
-    @monkey = new Stream().connect @duplex
+    @monkey = new Client().connect @duplex
     @multi = new Multi @monkey
 
   it "should implement Api", (done) ->

@@ -7,7 +7,7 @@ Chai.use require 'sinon-chai'
 {expect} = Chai
 
 Connection = require '../../src/monkey/connection'
-Stream = require '../../src/monkey/stream'
+Client = require '../../src/monkey/client'
 
 describe 'Connection', ->
 
@@ -20,9 +20,9 @@ describe 'Connection', ->
     @server.close()
     done()
 
-  it "should extend Stream", (done) ->
+  it "should extend Client", (done) ->
     monkey = new Connection
-    expect(monkey).to.be.an.instanceOf Stream
+    expect(monkey).to.be.an.instanceOf Client
     done()
 
   it "should not create a connection immediately", (done) ->

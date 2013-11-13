@@ -3,16 +3,16 @@ Chai = require 'chai'
 Chai.use require 'sinon-chai'
 {expect} = Chai
 
-Stream = require '../../src/monkey/stream'
+Client = require '../../src/monkey/client'
 Api = require '../../src/monkey/api'
 Multi = require '../../src/monkey/multi'
 MockDuplex = require '../mock/duplex'
 
-describe 'Stream', ->
+describe 'Client', ->
 
   beforeEach ->
     @duplex = new MockDuplex
-    @monkey = new Stream().connect @duplex
+    @monkey = new Client().connect @duplex
 
   it "should implement Api", (done) ->
     expect(@monkey).to.be.an.instanceOf Api
@@ -93,7 +93,7 @@ describe 'Stream', ->
       expect(@monkey.multi()).to.be.an.instanceOf Multi
       done()
 
-    it "should be be bound to the Stream instance", (done) ->
+    it "should be be bound to the Client instance", (done) ->
       multi = @monkey.multi()
       expect(multi.monkey).to.equal @monkey
       done()

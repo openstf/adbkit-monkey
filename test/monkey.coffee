@@ -3,7 +3,7 @@ Net = require 'net'
 
 Monkey = require '../'
 Connection = require '../src/monkey/connection'
-Stream = require '../src/monkey/stream'
+Client = require '../src/monkey/client'
 MockDuplex = require './mock/duplex'
 
 describe 'Monkey', ->
@@ -14,10 +14,10 @@ describe 'Monkey', ->
       expect(Monkey.Connection).to.equal Connection
       done()
 
-  describe 'Stream', ->
+  describe 'Client', ->
 
     it "should be exposed", (done) ->
-      expect(Monkey.Stream).to.equal Stream
+      expect(Monkey.Client).to.equal Client
       done()
 
   describe 'connect(options)', ->
@@ -42,12 +42,12 @@ describe 'Monkey', ->
       @duplex = new MockDuplex
       done()
 
-    it "should return a Stream instance", (done) ->
+    it "should return a Client instance", (done) ->
       monkey = Monkey.connectStream @duplex
-      expect(monkey).to.be.an.instanceOf Stream
+      expect(monkey).to.be.an.instanceOf Client
       done()
 
-    it "should pass stream to Stream", (done) ->
+    it "should pass stream to Client", (done) ->
       monkey = Monkey.connectStream @duplex
       expect(monkey.stream).to.equal @duplex
       done()
