@@ -79,6 +79,23 @@ client.getDisplayWidth(function(err, width) {
 });
 ```
 
+### Type text
+
+Note that you should manually focus a text field first.
+
+```javascript
+var assert = require('assert');
+var monkey = require('adbkit-monkey');
+
+var client = monkey.connect({ port: 1080 });
+
+client.type('hello monkey!', function(err) {
+  assert.ifError(err);
+  console.log('Said hello to monkey');
+  client.end();
+});
+```
+
 ## API
 
 ### Monkey
