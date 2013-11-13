@@ -1,6 +1,6 @@
 {
   "name": "adbkit-monkey",
-  "version": "0.2.7",
+  "version": "0.3.0",
   "author": "CyberAgent, Inc.",
   "main": "./index",
   "scripts": {
