@@ -14,6 +14,71 @@ npm install --save adbkit-monkey
 
 ## Examples
 
+The following examples assume that monkey is already running (via `adb shell monkey --port 1080`) and a port forwarding (`adb forward tcp:1080 tcp:1080`) has been set up.
+
+### Press the home button
+
+```javascript
+var assert = require('assert');
+var monkey = require('adbkit-monkey');
+
+var client = monkey.connect({ port: 1080 });
+
+client.press(3 /* KEYCODE_HOME */, function(err) {
+  assert.ifError(err);
+  console.log('Pressed home button');
+  client.end();
+});
+```
+
+### Drag out the notification bar
+
+```javascript
+var assert = require('assert');
+var monkey = require('adbkit-monkey');
+
+var client = monkey.connect({ port: 1080 });
+
+client.multi()
+  .touchDown(100, 0)
+  .sleep(5)
+  .touchMove(100, 20)
+  .sleep(5)
+  .touchMove(100, 40)
+  .sleep(5)
+  .touchMove(100, 60)
+  .sleep(5)
+  .touchMove(100, 80)
+  .sleep(5)
+  .touchMove(100, 100)
+  .sleep(5)
+  .touchUp(100, 100)
+  .sleep(5)
+  .execute(function(err) {
+    assert.ifError(err);
+    console.log('Dragged out the notification bar');
+    client.end();
+  });
+```
+
+### Get display size
+
+```javascript
+var assert = require('assert');
+var monkey = require('adbkit-monkey');
+
+var client = monkey.connect({ port: 1080 });
+
+client.getDisplayWidth(function(err, width) {
+  assert.ifError(err);
+  client.getDisplayHeight(function(err, height) {
+    assert.ifError(err);
+    console.log('Display size is %dx%d', width, height);
+    client.end();
+  });
+});
+```
+
 ## API
 
 ### Monkey
@@ -220,7 +285,7 @@ Alias for `api.get('display.density', callback)`.
 
 #### api.getDisplayHeight(callback)
 
-Alias for `api.get('display.height', callback)`.
+Alias for `api.get('display.height', callback)`. Note that the height may exclude any virtual home button row.
 
 #### api.getDisplayWidth(callback)
 
