@@ -5,7 +5,7 @@ Queue = require './queue'
 Multi = require './multi'
 Parser = require './parser'
 
-class Stream extends Api
+class Client extends Api
   constructor: ->
     @commandQueue = new Queue
     @parser = new Parser
@@ -23,7 +23,7 @@ class Stream extends Api
     @parser.on 'reply', (reply) =>
       this._consume reply
     @parser.on 'error', (err) =>
-      throw err
+      this.emit 'error', err
     return
 
   _consume: (reply) ->
@@ -57,4 +57,4 @@ class Stream extends Api
   multi: ->
     new Multi this
 
-module.exports = Stream
+module.exports = Client

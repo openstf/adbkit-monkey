@@ -1,4 +1,4 @@
-Stream = require './monkey/stream'
+Client = require './monkey/client'
 Connection = require './monkey/connection'
 
 class Monkey
@@ -7,9 +7,9 @@ class Monkey
     new Connection().connect options
 
   @connectStream: (stream) ->
-    new Stream().connect stream
+    new Client().connect stream
 
 Monkey.Connection = Connection
-Monkey.Stream = Stream
+Monkey.Client = Client
 
 module.exports = Monkey

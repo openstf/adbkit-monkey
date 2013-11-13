@@ -1,8 +1,8 @@
 Net = require 'net'
 
-Stream = require './stream'
+Client = require './client'
 
-class Connection extends Stream
+class Connection extends Client
   connect: (options) ->
     stream = Net.connect options
     stream.setNoDelay true
