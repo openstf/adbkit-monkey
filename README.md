@@ -2,9 +2,7 @@
 
 **adbkit-monkey** provides a [Node.js][nodejs] interface for working with the Android [`monkey` tool][monkey-site]. Albeit undocumented, they monkey program can be started in TCP mode with the `--port` argument. In this mode, it accepts a [range of commands][monkey-proto] that can be used to interact with the UI in a non-random manner. This mode is also used internally by the [`monkeyrunner` tool][monkeyrunner-site], although the documentation claims no relation to the monkey tool.
 
-Note that while adbkit-monkey is written in CoffeeScript, it is compiled to JavaScript before publishing to NPM, which means that you are not required to use CoffeeScript.
-
-## Installation
+## Getting started
 
 Install via NPM:
 
@@ -12,11 +10,13 @@ Install via NPM:
 npm install --save adbkit-monkey
 ```
 
-## Examples
+Note that while adbkit-monkey is written in CoffeeScript, it is compiled to JavaScript before publishing to NPM, which means that you are not required to use CoffeeScript.
+
+### Examples
 
 The following examples assume that monkey is already running (via `adb shell monkey --port 1080`) and a port forwarding (`adb forward tcp:1080 tcp:1080`) has been set up.
 
-### Press the home button
+#### Press the home button
 
 ```javascript
 var assert = require('assert');
@@ -31,7 +31,7 @@ client.press(3 /* KEYCODE_HOME */, function(err) {
 });
 ```
 
-### Drag out the notification bar
+#### Drag out the notification bar
 
 ```javascript
 var assert = require('assert');
@@ -61,7 +61,7 @@ client.multi()
   });
 ```
 
-### Get display size
+#### Get display size
 
 ```javascript
 var assert = require('assert');
@@ -79,7 +79,7 @@ client.getDisplayWidth(function(err, width) {
 });
 ```
 
-### Type text
+#### Type text
 
 Note that you should manually focus a text field first.
 
@@ -442,12 +442,16 @@ Sends all buffered commands.
     * **err** `null` when successful, `Error` otherwise.
     * **values** An array of all response values, identical to individual `Api` responses.
 
-## Links
+## More information
 
 * [Monkey][monkey-site]
     - [Source code][monkey-source]
     - [Protocol][monkey-proto]
 * [Monkeyrunner][monkeyrunner-site]
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
 
