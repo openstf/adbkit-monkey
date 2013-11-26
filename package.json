@@ -1,7 +1,20 @@
 {
   "name": "adbkit-monkey",
   "version": "1.0.0",
-  "author": "CyberAgent, Inc.",
+  "description": "A Node.js interface to the Android monkey tool.",
+  "keywords": ["adb", "adbkit", "monkey", "monkeyrunner"],
+  "author": {
+    "name": "CyberAgent, Inc.",
+    "email": "npm@cyberagent.co.jp",
+    "url": "http://www.cyberagent.co.jp/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CyberAgent/adbkit-monkey.git"
+  },
+  "bugs": {
+    "url": "https://github.com/CyberAgent/adbkit-monkey/issues"
+  },
   "main": "./index",
   "scripts": {
     "test": "grunt test",
