@@ -457,6 +457,8 @@ See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 See [LICENSE](LICENSE).
 
+Copyright © CyberAgent, Inc. All Rights Reserved.
+
 [nodejs]: <http://nodejs.org/>
 [monkey-site]: <http://developer.android.com/tools/help/monkey.html>
 [monkey-source]: <https://github.com/android/platform_development/blob/master/cmds/monkey/>
