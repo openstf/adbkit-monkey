@@ -1,16 +1,35 @@
 {
-  "author": {
-    "email": "npm@cyberagent.co.jp",
-    "name": "CyberAgent, Inc.",
-    "url": "http://www.cyberagent.co.jp/"
-  },
+  "name": "adbkit-monkey",
+  "version": "1.0.0",
+  "description": "A Node.js interface to the Android monkey tool.",
+  "keywords": [
+    "adb",
+    "adbkit",
+    "monkey",
+    "monkeyrunner"
+  ],
   "bugs": {
     "url": "https://github.com/CyberAgent/adbkit-monkey/issues"
+  },
+  "license": "Apache-2.0",
+  "author": {
+    "name": "CyberAgent, Inc.",
+    "email": "npm@cyberagent.co.jp",
+    "url": "http://www.cyberagent.co.jp/"
+  },
+  "main": "./index",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CyberAgent/adbkit-monkey.git"
+  },
+  "scripts": {
+    "postpublish": "grunt clean",
+    "prepublish": "grunt coffee",
+    "test": "grunt test"
   },
   "dependencies": {
     "async": "~0.2.9"
   },
-  "description": "A Node.js interface to the Android monkey tool.",
   "devDependencies": {
     "chai": "~1.8.1",
     "coffee-script": "~1.6.3",
@@ -29,24 +48,5 @@
   },
   "engines": {
     "node": ">= 0.10.4"
-  },
-  "keywords": [
-    "adb",
-    "adbkit",
-    "monkey",
-    "monkeyrunner"
-  ],
-  "license": "Apache-2.0",
-  "main": "./index",
-  "name": "adbkit-monkey",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/CyberAgent/adbkit-monkey.git"
-  },
-  "scripts": {
-    "postpublish": "grunt clean",
-    "prepublish": "grunt coffee",
-    "test": "grunt test"
-  },
-  "version": "1.0.0"
+  }
 }
