@@ -1,8 +1,9 @@
 # adbkit-monkey
 
 # Warning
-
-This repository was superseded by https://github.com/DeviceFarmer/adbkit-monkey
+# This project along with other ones in [OpenSTF](https://github.com/openstf) organisation is provided as is for community, without active development.
+# You can check any other forks that may be actively developed and offer new/different features [here](https://github.com/openstf/stf/network).
+# Active development has been moved to [DeviceFarmer](https://github.com/DeviceFarmer) organisation.
 
 **adbkit-monkey** provides a [Node.js][nodejs] interface for working with the Android [`monkey` tool][monkey-site]. Albeit undocumented, they monkey program can be started in TCP mode with the `--port` argument. In this mode, it accepts a [range of commands][monkey-proto] that can be used to interact with the UI in a non-random manner. This mode is also used internally by the [`monkeyrunner` tool][monkeyrunner-site], although the documentation claims no relation to the monkey tool.
 
