@@ -18,6 +18,7 @@
     "url": "http://www.cyberagent.co.jp/"
   },
   "main": "./index",
+  "module": "./lib/monkey",
   "repository": {
     "type": "git",
     "url": "https://github.com/CyberAgent/adbkit-monkey.git"
