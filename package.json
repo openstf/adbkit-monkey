@@ -52,7 +52,8 @@
     "/index.js",
     "/index.d.ts",
     "/CHANGELOG.md",
-    "/SECURITY.md"
+    "/SECURITY.md",
+    "/NOTICE"
   ],
   "overrides": {
     "glob": "^14.0.2",
