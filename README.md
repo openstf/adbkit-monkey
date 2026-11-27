@@ -12,10 +12,10 @@
 Install via NPM:
 
 ```bash
-npm install --save adbkit-monkey
+npm install --save @devicefarmer/adbkit-monkey
 ```
 
-Note that while adbkit-monkey is written in CoffeeScript, it is compiled to JavaScript before publishing to NPM, which means that you are not required to use CoffeeScript.
+adbkit-monkey requires Node.js 22 or later. It is written in TypeScript and published as CommonJS JavaScript with type declarations, so it works with both `require()` and TypeScript.
 
 ### Examples
 
@@ -25,7 +25,7 @@ The following examples assume that monkey is already running (via `adb shell mon
 
 ```javascript
 var assert = require('assert');
-var monkey = require('adbkit-monkey');
+var monkey = require('@devicefarmer/adbkit-monkey');
 
 var client = monkey.connect({ port: 1080 });
 
@@ -40,7 +40,7 @@ client.press(3 /* KEYCODE_HOME */, function(err) {
 
 ```javascript
 var assert = require('assert');
-var monkey = require('adbkit-monkey');
+var monkey = require('@devicefarmer/adbkit-monkey');
 
 var client = monkey.connect({ port: 1080 });
 
@@ -70,7 +70,7 @@ client.multi()
 
 ```javascript
 var assert = require('assert');
-var monkey = require('adbkit-monkey');
+var monkey = require('@devicefarmer/adbkit-monkey');
 
 var client = monkey.connect({ port: 1080 });
 
@@ -90,7 +90,7 @@ Note that you should manually focus a text field first.
 
 ```javascript
 var assert = require('assert');
-var monkey = require('adbkit-monkey');
+var monkey = require('@devicefarmer/adbkit-monkey');
 
 var client = monkey.connect({ port: 1080 });
 
